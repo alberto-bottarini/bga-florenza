@@ -1,0 +1,468 @@
+/**
+ *------
+ * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+ * FlorenzaCardGame implementation : © <Your name here> <Your email address here>
+ *
+ * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+ * See http://en.boardgamearena.com/#!doc/Studio for more information.
+ * -----
+ *
+ * florenzacardgame.css
+ *
+ * FlorenzaCardGame stylesheet
+ *
+ */
+
+/*
+    This is the CSS stylesheet of your game User Interface.
+    
+    Styles defined on this file will be applied to the HTML elements you define in your
+    HTML template (florenzacardgame_florenzacardgame.tpl), and to HTML elements you create dynamically
+    (in florenzacardgame.js).
+    
+    Usually, you are using CSS to:
+    
+    1°) define the overall layout of your game
+        (ex: place the board on the top left, place player's hand beside, place the deck on the right, ...).
+
+    2°) create your CSS-sprites:
+        All images of your games should be gathered into a small number of image files. Then, using
+        background-image and background-position CSS properties, you create HTML blocks that can 
+        display these images correctly (see example below).
+    
+    3°) ... anything else:
+        It is really easy to add and remove CSS classes dynamically from your Javascript with
+        dojo.addClass and dojo.removeClass. It is also easy to check if an element has a class
+        (dojo.hasClass) or to get all elements with a specific class (dojo.query). This is why,
+        very often, using CSS classes for the logic of your user interface allow you to do complex
+        thing easily.
+        
+        
+     Note: on the production platform, this file will be compressed and comments will be removed.
+           Consequently, don't hesitate to put as many comments as necessary.
+*/
+
+@import url(../../../css/csslayer.css); /* Note: you must not use any @import directive other than this one */
+
+/********* You can start writing your CSS below this line: **********/
+
+.clickable {
+	cursor: pointer;
+}
+
+#turn-counter {
+	background-image:url(img/round-sprite.png); 
+	width:78px; 
+	height:120px;
+	display: inline-block;
+}
+.turn-counter-0 { background-position:0 0; }
+.turn-counter-1 { background-position:0 -125px; }
+.turn-counter-2 { background-position:0 -250px; }
+.turn-counter-3 { background-position:0 -375px; }
+.turn-counter-4 { background-position:0 -500px; }
+.turn-counter-5 { background-position:0 -625px; }
+.turn-counter-6 { background-position:0 -750px; }
+.turn-counter-7 { background-position:0 -875px; }
+.turn-counter-8 { background-position:0 -1000px; }
+
+#round-counter {
+	background-image:url('img/round2-sprite.png'); 
+	width:34px; 
+	height:34px;
+	display: block;
+	margin: auto;
+}
+.round-counter-1 { background-position:0 0; }
+.round-counter-2 { background-position:0 -39px; }
+.round-counter-3 { background-position:0 -78px; }
+.round-counter-4 { background-position:0 -117px; }
+.round-counter-5 { background-position:0 -156px; }
+
+.location-card-trigger {
+	width: 65px;
+	height: 100px;
+	float: left;
+	display: inline-block;
+	margin: 5px;
+	background: url(img/location-sprite.png);
+}
+.location-card-trigger.tapped-1 {
+	background-position:0 -1365px !important;
+}
+.location-card-trigger-baratto { background-position:0 0; }
+.location-card-trigger-boscaiuolo { background-position:0 -105px; }
+.location-card-trigger-capitano { background-position:0 -210px; }
+.location-card-trigger-erbolaio { background-position:0 -315px; }
+.location-card-trigger-fabbro { background-position:0 -420px; }
+.location-card-trigger-lanaiuolo { background-position:0 -525px; }
+.location-card-trigger-legnaiuolo { background-position:0 -630px; }
+.location-card-trigger-montepieta { background-position:0 -735px; }
+.location-card-trigger-orafo { background-position:0 -840px; }
+.location-card-trigger-ottonaio { background-position:0 -945px; }
+.location-card-trigger-picconiere { background-position:0 -1050px; }
+.location-card-trigger-scarpellino { background-position:0 -1155px; }
+.location-card-trigger-speziale { background-position:0 -1260px; }
+.location-card-trigger-tintore { background-position:0 -1470px; }
+
+.florenza-card-trigger {
+	background-image:url(img/florenza-sprite.png); 
+	width:78px; 
+	height:120px;
+	float: left;
+	display: inline-block;
+	margin: 5px;
+}
+.florenza-card-trigger-abside { background-position:0 0; }
+.florenza-card-trigger-affresco { background-position:0 -125px; }
+.florenza-card-trigger-antoniodapadova { background-position:0 -250px; }
+.florenza-card-trigger-artedeimercatanti { background-position:0 -375px; }
+.florenza-card-trigger-artemaggiore { background-position:0 -500px; }
+.florenza-card-trigger-bernardodichiaravalle { background-position:0 -625px; }
+.florenza-card-trigger-biblioteca { background-position:0 -750px; }
+.florenza-card-trigger-boscaiuolo { background-position:0 -875px; }
+.florenza-card-trigger-bottegadarte { background-position:0 -1000px; }
+.florenza-card-trigger-cambiavalute { background-position:0 -1125px; }
+.florenza-card-trigger-cameranuziale { background-position:0 -1250px; }
+.florenza-card-trigger-camino { background-position:0 -1375px; }
+.florenza-card-trigger-campanile { background-position:0 -1500px; }
+.florenza-card-trigger-cappella { background-position:0 -1625px; }
+.florenza-card-trigger-casa { background-position:0 -1750px; }
+.florenza-card-trigger-casamento { background-position:0 -1875px; }
+.florenza-card-trigger-cava { background-position:0 -2000px; }
+.florenza-card-trigger-convento { background-position:0 -2125px; }
+.florenza-card-trigger-crocifisso { background-position:0 -2250px; }
+.florenza-card-trigger-cupola { background-position:0 -2375px; }
+.florenza-card-trigger-edicola { background-position:0 -2500px; }
+.florenza-card-trigger-edificatore { background-position:0 -2625px; }
+.florenza-card-trigger-erbolaio { background-position:0 -2750px; }
+.florenza-card-trigger-fabbro { background-position:0 -2875px; }
+.florenza-card-trigger-facciata { background-position:0 -3000px; }
+.florenza-card-trigger-facciatachiesa { background-position:0 -3125px; }
+.florenza-card-trigger-fonderia { background-position:0 -3250px; }
+.florenza-card-trigger-fontana { background-position:0 -3375px; }
+.florenza-card-trigger-giardino { background-position:0 -3500px; }
+.florenza-card-trigger-giordanobruno { background-position:0 -3625px; }
+.florenza-card-trigger-girolamosavonarola { background-position:0 -3750px; }
+.florenza-card-trigger-grandequadro { background-position:0 -3875px; }
+.florenza-card-trigger-ingresso { background-position:0 -4000px; }
+.florenza-card-trigger-lanaiuolo { background-position:0 -4125px; }
+.florenza-card-trigger-lastricato { background-position:0 -4250px; }
+.florenza-card-trigger-loggia { background-position:0 -4375px; }
+.florenza-card-trigger-mastroartista { background-position:0 -4500px; }
+.florenza-card-trigger-mercatante { background-position:0 -4625px; }
+.florenza-card-trigger-mercato { background-position:0 -4750px; }
+.florenza-card-trigger-miniera { background-position:0 -4875px; }
+.florenza-card-trigger-montedipieta { background-position:0 -5000px; }
+.florenza-card-trigger-monumentoequestre { background-position:0 -5125px; }
+.florenza-card-trigger-navata { background-position:0 -5250px; }
+.florenza-card-trigger-padrone { background-position:0 -5375px; }
+.florenza-card-trigger-paladaltare { background-position:0 -5500px; }
+.florenza-card-trigger-palagio { background-position:0 -5625px; }
+.florenza-card-trigger-picconiere { background-position:0 -5750px; }
+.florenza-card-trigger-pozzo { background-position:0 -5875px; }
+.florenza-card-trigger-protettore { background-position:0 -6000px; }
+.florenza-card-trigger-pulpito { background-position:0 -6125px; }
+.florenza-card-trigger-ritratto { background-position:0 -6250px; }
+.florenza-card-trigger-sacello { background-position:0 -6375px; }
+.florenza-card-trigger-sagrato { background-position:0 -6500px; }
+.florenza-card-trigger-sagrestia { background-position:0 -6625px; }
+.florenza-card-trigger-sala { background-position:0 -6750px; }
+.florenza-card-trigger-sanfrancescodassisi { background-position:0 -6875px; }
+.florenza-card-trigger-scalone { background-position:0 -7000px; }
+.florenza-card-trigger-segheria { background-position:0 -7125px; }
+.florenza-card-trigger-setaiuolo { background-position:0 -7250px; }
+.florenza-card-trigger-signoredelorione { background-position:0 -7375px; }
+.florenza-card-trigger-statuadibronzo { background-position:0 -7500px; }
+.florenza-card-trigger-tommasodaquino { background-position:0 -7625px; }
+.florenza-card-trigger-trittico { background-position:0 -7750px; }
+
+.resource-container {
+	float: left;
+	width: 80px;
+	line-height: 38px;
+}
+.resource {
+	width: 40px;
+	height: 38px;
+	display: inline-block;
+	float: left;
+	background: url(img/resource-sprite.png);
+}
+
+.resource-fabric { background-position:0 0; }
+.resource-gold { background-position:0 -43px; }
+.resource-marble { background-position:0 -86px; }
+.resource-metal { background-position:0 -129px; }
+.resource-money { background-position:0 -172px; }
+.resource-spice { background-position:0 -215px; }
+.resource-wood { background-position:0 -258px; }
+
+.resource-container-small {
+	float: left;
+	margin-right: 20px;
+	line-height: 19px;
+}
+
+.resource-small {
+	background-image:url(img/resource-sprite-small.png); 
+	width: 20px; 
+	height:19px;
+	display: inline-block;
+	float: left;
+}
+
+#maintitlebar_content .resource-small, #right-side-second-part .resource-small {
+	float: none;
+}
+
+.resource-small-fabric { background-position:0 0; }
+.resource-small-gold { background-position:0 -24px; }
+.resource-small-marble { background-position:0 -48px; }
+.resource-small-metal { background-position:0 -72px; }
+.resource-small-money { background-position:0 -96px; }
+.resource-small-spice { background-position:0 -120px; }
+.resource-small-wood { background-position:0 -144px; }
+
+.artist {
+	background-image:url(img/artists-sprite.png); 
+	width:33px; 
+	height:33px;
+}
+
+.artist-architect { background-position:0 0; }
+.artist-painter { background-position:0 -38px; }
+.artist-sculptor { background-position:0 -76px; }
+
+.artist-small {
+	background-image:url(img/artists-small-sprite.png); 
+	width:20px; 
+	height:20px;
+	float: left;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.artist-small-architect { background-position:0 0; }
+.artist-small-painter { background-position:0 -25px; }
+.artist-small-sculptor { background-position:0 -50px; }
+
+#captain-player {
+	width: 29px;
+	height: 35px;
+	background: url(img/captain.png);
+	display: inline-block;
+	margin-top: -35px;
+	float: right;
+}
+
+#baratto-whiteblock, #resource-choice-whiteblock {
+	display: none;
+}
+
+#baratto-whiteblock .resource, #resource-choice-whiteblock .resource {
+	cursor: pointer;
+}
+
+.artist-card-trigger { 
+	background-image:url('img/artist-card-sprite.png'); 
+	width:65px; 
+	height:100px; 
+	float: left;
+	margin: 5px;
+	display: inline-block;
+}
+.florenza-card-trigger .artist-card-trigger,
+.monument-trigger .artist-card-trigger {
+	position: relative;
+	top: 44px;
+	left: 23px;
+	margin: 0px;
+	float: none;
+	height: 72px;
+	width: 50px;
+}
+.artist-card-trigger-alberti-architect-1 { background-position:0 0; }
+.artist-card-trigger-alberti-architect { background-position:0 -105px; }
+.artist-card-trigger-angelico-painter-2 { background-position:0 -210px; }
+.artist-card-trigger-angelico-painter { background-position:0 -315px; }
+.artist-card-trigger-anonymous-architect { background-position:0 -420px; }
+.artist-card-trigger-anonymous-painter { background-position:0 -525px; }
+.artist-card-trigger-anonymous-sculptor { background-position:0 -630px; }
+.artist-card-trigger-anonymous { background-position:0 -735px; }
+.artist-card-trigger-bernini-architect-4 { background-position:0 -840px; }
+.artist-card-trigger-bernini-architect-5 { background-position:0 -945px; }
+.artist-card-trigger-bernini-architect-6 { background-position:0 -1050px; }
+.artist-card-trigger-bernini-architect { background-position:0 -1155px; }
+.artist-card-trigger-bernini-sculptor-3 { background-position:0 -1260px; }
+.artist-card-trigger-bernini-sculptor-4 { background-position:0 -1365px; }
+.artist-card-trigger-bernini-sculptor-5 { background-position:0 -1470px; }
+.artist-card-trigger-bernini-sculptor { background-position:0 -1575px; }
+.artist-card-trigger-borromini-architect-2 { background-position:0 -1680px; }
+.artist-card-trigger-borromini-architect-3 { background-position:0 -1785px; }
+.artist-card-trigger-borromini-architect-4 { background-position:0 -1890px; }
+.artist-card-trigger-borromini-architect { background-position:0 -1995px; }
+.artist-card-trigger-botticelli-painter-3 { background-position:0 -2100px; }
+.artist-card-trigger-botticelli-painter-4 { background-position:0 -2205px; }
+.artist-card-trigger-botticelli-painter-5 { background-position:0 -2310px; }
+.artist-card-trigger-botticelli-painter { background-position:0 -2415px; }
+.artist-card-trigger-bramante-architect-2 { background-position:0 -2520px; }
+.artist-card-trigger-bramante-architect { background-position:0 -2625px; }
+.artist-card-trigger-brunelleschi-architect-2 { background-position:0 -2730px; }
+.artist-card-trigger-brunelleschi-architect-4 { background-position:0 -2835px; }
+.artist-card-trigger-brunelleschi-architect-6 { background-position:0 -2940px; }
+.artist-card-trigger-brunelleschi-architect { background-position:0 -3045px; }
+.artist-card-trigger-buonarroti-architect-3 { background-position:0 -3150px; }
+.artist-card-trigger-buonarroti-architect { background-position:0 -3255px; }
+.artist-card-trigger-buonarroti-painter-4 { background-position:0 -3360px; }
+.artist-card-trigger-buonarroti-painter-5 { background-position:0 -3465px; }
+.artist-card-trigger-buonarroti-painter-6 { background-position:0 -3570px; }
+.artist-card-trigger-buonarroti-painter-7 { background-position:0 -3675px; }
+.artist-card-trigger-buonarroti-painter { background-position:0 -3780px; }
+.artist-card-trigger-buonarroti-sculptor-5 { background-position:0 -3885px; }
+.artist-card-trigger-buonarroti-sculptor-6 { background-position:0 -3990px; }
+.artist-card-trigger-buonarroti-sculptor-7 { background-position:0 -4095px; }
+.artist-card-trigger-buonarroti-sculptor { background-position:0 -4200px; }
+.artist-card-trigger-caravaggio-painter-4 { background-position:0 -4305px; }
+.artist-card-trigger-caravaggio-painter-5 { background-position:0 -4410px; }
+.artist-card-trigger-caravaggio-painter-6 { background-position:0 -4515px; }
+.artist-card-trigger-caravaggio-painter { background-position:0 -4620px; }
+.artist-card-trigger-cellini-sculptor-2 { background-position:0 -4725px; }
+.artist-card-trigger-cellini-sculptor-3 { background-position:0 -4830px; }
+.artist-card-trigger-cellini-sculptor-4 { background-position:0 -4935px; }
+.artist-card-trigger-cellini-sculptor { background-position:0 -5040px; }
+.artist-card-trigger-dasangallo-architect-1 { background-position:0 -5145px; }
+.artist-card-trigger-dasangallo-architect-2 { background-position:0 -5250px; }
+.artist-card-trigger-dasangallo-architect-3 { background-position:0 -5355px; }
+.artist-card-trigger-dasangallo-architect { background-position:0 -5460px; }
+.artist-card-trigger-davinci-painter-3 { background-position:0 -5565px; }
+.artist-card-trigger-davinci-painter-7 { background-position:0 -5670px; }
+.artist-card-trigger-davinci-painter { background-position:0 -5775px; }
+.artist-card-trigger-davinci-sculptor-3 { background-position:0 -5880px; }
+.artist-card-trigger-davinci-sculptor { background-position:0 -5985px; }
+.artist-card-trigger-dellafrancesca-painter-3 { background-position:0 -6090px; }
+.artist-card-trigger-dellafrancesca-painter-4 { background-position:0 -6195px; }
+.artist-card-trigger-dellafrancesca-painter { background-position:0 -6300px; }
+.artist-card-trigger-delverrocchio-sculptor-1 { background-position:0 -6405px; }
+.artist-card-trigger-delverrocchio-sculptor-2 { background-position:0 -6510px; }
+.artist-card-trigger-delverrocchio-sculptor-3 { background-position:0 -6615px; }
+.artist-card-trigger-delverrocchio-sculptor { background-position:0 -6720px; }
+.artist-card-trigger-donatello-sculptor-3 { background-position:0 -6825px; }
+.artist-card-trigger-donatello-sculptor-4 { background-position:0 -6930px; }
+.artist-card-trigger-donatello-sculptor-5 { background-position:0 -7035px; }
+.artist-card-trigger-donatello-sculptor { background-position:0 -7140px; }
+.artist-card-trigger-ghiberti-sculptor-2 { background-position:0 -7245px; }
+.artist-card-trigger-ghiberti-sculptor-3 { background-position:0 -7350px; }
+.artist-card-trigger-ghiberti-sculptor { background-position:0 -7455px; }
+.artist-card-trigger-ghirlandaio-painter-2 { background-position:0 -7560px; }
+.artist-card-trigger-ghirlandaio-painter-3 { background-position:0 -7665px; }
+.artist-card-trigger-ghirlandaio-painter { background-position:0 -7770px; }
+.artist-card-trigger-giambologna-sculptor-2 { background-position:0 -7875px; }
+.artist-card-trigger-giambologna-sculptor-3 { background-position:0 -7980px; }
+.artist-card-trigger-giambologna-sculptor { background-position:0 -8085px; }
+.artist-card-trigger-giotto-architect-3 { background-position:0 -8190px; }
+.artist-card-trigger-giotto-architect { background-position:0 -8295px; }
+.artist-card-trigger-giotto-painter-3 { background-position:0 -8400px; }
+.artist-card-trigger-giotto-painter-4 { background-position:0 -8505px; }
+.artist-card-trigger-giotto-painter { background-position:0 -8610px; }
+.artist-card-trigger-lippi-painter-2 { background-position:0 -8715px; }
+.artist-card-trigger-lippi-painter-3 { background-position:0 -8820px; }
+.artist-card-trigger-lippi-painter { background-position:0 -8925px; }
+.artist-card-trigger-mochi-sculptor-1 { background-position:0 -9030px; }
+.artist-card-trigger-mochi-sculptor-2 { background-position:0 -9135px; }
+.artist-card-trigger-mochi-sculptor { background-position:0 -9240px; }
+.artist-card-trigger-palladio-architect-2 { background-position:0 -9345px; }
+.artist-card-trigger-palladio-architect-3 { background-position:0 -9450px; }
+.artist-card-trigger-palladio-architect { background-position:0 -9555px; }
+.artist-card-trigger-perugino-painter-2 { background-position:0 -9660px; }
+.artist-card-trigger-perugino-painter { background-position:0 -9765px; }
+.artist-card-trigger-romano-architect-2 { background-position:0 -9870px; }
+.artist-card-trigger-romano-architect { background-position:0 -9975px; }
+.artist-card-trigger-sanzio-painter-4 { background-position:0 -10080px; }
+.artist-card-trigger-sanzio-painter-5 { background-position:0 -10185px; }
+.artist-card-trigger-sanzio-painter-6 { background-position:0 -10290px; }
+.artist-card-trigger-sanzio-painter { background-position:0 -10395px; }
+.artist-card-trigger-vasari-architect-2 { background-position:0 -10500px; }
+.artist-card-trigger-vasari-architect { background-position:0 -10605px; }
+.artist-card-trigger-vecellio-painter-4 { background-position:0 -10710px; }
+.artist-card-trigger-vecellio-painter-5 { background-position:0 -10815px; }
+.artist-card-trigger-vecellio-painter { background-position:0 -10920px; }
+.artist-card-trigger-vignola-architect-2 { background-position:0 -11025px; }
+.artist-card-trigger-vignola-architect-3 { background-position:0 -11130px; }
+.artist-card-trigger-vignola-architect-4 { background-position:0 -11235px; }
+.artist-card-trigger-vignola-architect { background-position:0 -11340px; }
+
+
+.florenza-card-counter, .resource-card-counter, .money-card-counter {
+	height: 35px;
+	width: 15px;
+	float: left;
+	margin-right: 15px;
+	padding-left: 25px;
+}
+.florenza-card-counter {
+	background:url(img/florenza-counter.jpg) left no-repeat;
+}
+.resource-card-counter {
+	background:url(img/resource-counter.jpg) left no-repeat;
+}
+.money-card-counter {
+	background:url(img/money-counter.jpg) left no-repeat;
+}
+
+
+.monument-trigger { 
+	background-image:url('img/monuments-sprite.png'); 
+	width:79px; 
+	height:120px; 
+	float: left;
+	margin: 5px;
+	display: inline-block;
+}
+.monument-trigger-banco-atrio { background-position:0 0; }
+.monument-trigger-battistero-cupola { background-position:0 -125px; }
+.monument-trigger-battistero-portali { background-position:0 -250px; }
+.monument-trigger-duomo-abside { background-position:0 -375px; }
+.monument-trigger-duomo-altare { background-position:0 -500px; }
+.monument-trigger-duomo-campanile { background-position:0 -625px; }
+.monument-trigger-duomo-cappella { background-position:0 -750px; }
+.monument-trigger-duomo-cupola { background-position:0 -875px; }
+.monument-trigger-duomo-facciata { background-position:0 -1000px; }
+.monument-trigger-duomo-navata { background-position:0 -1125px; }
+.monument-trigger-duomo-pulpito { background-position:0 -1250px; }
+.monument-trigger-lastricato-fontana { background-position:0 -1375px; }
+.monument-trigger-ospedale-cappella { background-position:0 -1500px; }
+.monument-trigger-ospedale-chiostro { background-position:0 -1625px; }
+.monument-trigger-palazzodellasignoria-facciata { background-position:0 -1750px; }
+.monument-trigger-palazzodellasignoria-salone { background-position:0 -1875px; }
+.monument-trigger-palazzovescovile-facciata { background-position:0 -2000px; }
+.monument-trigger-palazzovescovile-salone { background-position:0 -2125px; }
+.monument-trigger-pontevecchio-struttura { background-position:0 -2250px; }
+.monument-trigger-sanlorenzo-navata { background-position:0 -2375px; }
+.monument-trigger-sanlorenzo-sagrestia { background-position:0 -2500px; }
+.monument-trigger-santacroce-cappella { background-position:0 -2625px; }
+.monument-trigger-santacroce-monumentofunebre { background-position:0 -2750px; }
+.monument-trigger-santamarianovella-cappella { background-position:0 -2875px; }
+.monument-trigger-santamarianovella-crocifisso { background-position:0 -3000px; }
+.monument-trigger-santamarianovella-facciata { background-position:0 -3125px; }
+.monument-trigger-uffizzi-interni { background-position:0 -3250px; }
+
+.resource-tooltip {
+	float: left;
+}
+.resource-value {
+	margin-right: 5px;
+	width: 42px;
+	font-size: 0.8em;
+	float: left;
+}
+.my-resource {
+	height: 60px;
+}
+
+.clear {
+	clear: both;
+}
+
+
+
