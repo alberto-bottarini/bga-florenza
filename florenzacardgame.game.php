@@ -564,6 +564,19 @@ class FlorenzaCardGame extends Table {
         return $costString;        
     }
 
+    function calculateNextCaptain() {
+        $captainTokenPlayerId = self::getObjectFromDB("SELECT player_id FROM player_resources WHERE captain_token = 1");
+        if($captainTokenPlayerId) {
+            self::debug("Player $captainTokenPlayerId has the captain token. He will start next round");
+            self::DbQuery("UPDATE player_resources SET captain_token = 0");
+            $nextCaptainId = $captainTokenPlayerId['player_id'];
+        } else {
+            self::debug("No one has the captain token. The player next to the old captain will start next round");
+            $nextCaptainId = $this->getPlayerAfter($this->getActivePlayerId());
+        }
+        return $nextCaptainId;
+    }
+
 //////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
 //////////// 
@@ -1586,15 +1599,7 @@ class FlorenzaCardGame extends Table {
         self::DbQuery("UPDATE artist_card SET location = 'board' WHERE anonymous = 1");         
         
         //calculate next player
-        $captainTokenPlayerId = self::getObjectFromDB("SELECT player_id FROM player_resources WHERE captain_token = 1");
-        if($captainTokenPlayerId) {
-            self::debug("Player $captainTokenPlayerId has the captain token. He will start next round");
-            self::DbQuery("UPDATE player_resources SET captain_token = 0");
-            $nextCaptainId = $captainTokenPlayerId['player_id'];
-        } else {
-            self::debug("No one has the captain token. The player next to the old captain will start next round");
-            $nextCaptainId = $this->getPlayerAfter($this->getActivePlayerId());
-        }
+        $nextCaptainId = $this->calculateNextCaptain();
         $this->gamestate->changeActivePlayer($nextCaptainId);
         self::DbQuery("UPDATE player SET captain = 0");
         self::DbQuery("UPDATE player SET captain = 1 WHERE player_id = $nextCaptainId");
@@ -1828,8 +1833,7 @@ class FlorenzaCardGame extends Table {
                     "player_name" => $playerName,
                     "score_point" => $toRemoveScorePoint
                 ));
-            }
-			             
+            }			             
             
         }
         
@@ -1895,6 +1899,15 @@ class FlorenzaCardGame extends Table {
             }
             $i -= max(1, count($resourceMajority));
         }   
+
+        //1point for captain
+        $nextCaptainId = $this->calculateNextCaptain();
+        $captain = $this->loadPlayersBasicInfos();
+        $captain = $captain[$nextCaptainId];
+        self::DbQuery("UPDATE player SET player_score = player_score + 1 WHERE player_id = $nextCaptainId");
+        self::notifyAllPlayers("message", clienttranslate('${captainname} gets 1 score point for being the captain'), array(
+            "captainname" => $captain['player_name']
+        )); 
         
 
         $this->gamestate->nextState("gameEnd");
