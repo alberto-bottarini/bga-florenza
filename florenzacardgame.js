@@ -399,7 +399,7 @@ function (dojo, declare) {
                     html += "<div class='resource-container-small'><span class='resource-small resource-small-"+resource+"'></span>"+quantity+"</div>";
         	});
         	html += "<div class='clear'></div><br/>";
-        	if(card.description.length > 0) html += card.description + "<br/>";
+        	if(card.description.length > 0) html += _(card.description) + "<br/>";
         	if(card.scorePoint > 0) html += "Score Point: <b>" + card.scorePoint + "</b><br/>";
         	html += "<br/>";
         	if(card.artists.length > 0) {
@@ -494,7 +494,7 @@ function (dojo, declare) {
         },
         
         createLocationCardTooltip: function(card) {
-        	var html = "<h4>" + card.title + "</h4><hr />" + card.description;
+        	var html = "<h4>" + card.title + "</h4><hr />" + _(card.description);
 			return html;
         },        
 

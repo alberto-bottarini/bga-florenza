@@ -16,7 +16,6 @@
   *
   */
 
-
 require_once( APP_GAMEMODULE_PATH.'module/table/table.game.php' );
 
 require('florenzacardgame.card.php');
@@ -934,7 +933,7 @@ class FlorenzaCardGame extends Table {
 
         } else if($type == "BARATTO") {
 
-            if(!$this->hasPlayerAnyResource($currentPlayerId, 0)) {
+            if(!$this->hasPlayerAnyResource($currentPlayerId, 1)) {
                 throw new BgaUserException(self::_("You have not enough resources to play this card"));
             }
         
@@ -1026,7 +1025,15 @@ class FlorenzaCardGame extends Table {
 
     function acGoToMarket() {
         self::checkAction('goToMarket');
-        //controllare se qualcosa e possibile fare
+        $currentPlayerId = self::getActivePlayerId();
+
+        $canSell = $this->hasPlayerAnyResource($currentPlayerId, 1) && $this->hasResourceAvailability("money", 100);
+        $canBuy = $this->hasPlayerResource($currentPlayerId, "money", 100) && $this->hasAnyResourceAvailability();
+
+        if(!$canSell && !$canBuy) {
+            throw new BgaUserException(self::_("You have not enough resources or there are not resource availability to play this action"));
+        }
+
         $this->gamestate->nextState('actionMarket');
     }
 
@@ -1034,7 +1041,7 @@ class FlorenzaCardGame extends Table {
         self::checkAction('sellResourceMarket');
         $currentPlayerId = self::getActivePlayerId();
 
-        if(!$this->hasPlayerAnyResource($currentPlayerId, 0)) {
+        if(!$this->hasPlayerAnyResource($currentPlayerId, 1)) {
             throw new BgaUserException(self::_("You have not enough resources to play this action"));
         }
 
