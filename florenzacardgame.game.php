@@ -625,7 +625,7 @@ class FlorenzaCardGame extends Table {
             ));
 
             self::notifyAllPlayers('message', clienttranslate('${player_name} start building ${card_title}. He must now choose an artist!'), array(
-                'card_title' => $card['titleTr'],
+                'card_title' => $card['title'],
                 'player_name' => self::getActivePlayerName()
             ));            
 
@@ -653,7 +653,7 @@ class FlorenzaCardGame extends Table {
                 ));
 
                 self::notifyAllPlayers('message', clienttranslate('${player_name} pays ${cost}, plays ${card_title} and gets ${score_point} score point'), array(
-                    'card_title' => $card['titleTr'],
+                    'card_title' => $card['title'],
                     'player_name' => self::getActivePlayerName(),
                     'cost' => $this->costToString($cardCost),
                     'score_point' => $scorePoint
@@ -661,7 +661,7 @@ class FlorenzaCardGame extends Table {
             } else {
 
                 self::notifyAllPlayers('message', clienttranslate('${player_name} pays ${cost} and plays ${card_title}'), array(
-                    'card_title' => $card['titleTr'],
+                    'card_title' => $card['title'],
                     'player_name' => self::getActivePlayerName(),
                     'cost' => $this->costToString($cardCost)                  
                 )); 
@@ -895,7 +895,7 @@ class FlorenzaCardGame extends Table {
 
             self::notifyAllPlayers("message", clienttranslate('${player_name} plays ${card_name} and gets 1 ${resource}'), array(
                 'player_name' => self::getActivePlayerName(),
-                'card_name' => $card['titleTr'],
+                'card_name' => $card['title'],
                 'resource' => $resource
             ));
             
@@ -925,7 +925,7 @@ class FlorenzaCardGame extends Table {
 
             self::notifyAllPlayers("message", clienttranslate('${player_name} plays ${card_name}, sells 1 ${resource} and gets 200 money'), array(
                 'player_name' => self::getActivePlayerName(),
-                'card_name' => $card['titleTr'],
+                'card_name' => $card['title'],
                 'resource' => $resource
             ));
         
@@ -941,7 +941,7 @@ class FlorenzaCardGame extends Table {
 
             self::notifyAllPlayers("message", clienttranslate('${player_name} plays ${card_name}: will be the first player in the next round'), array(
                 'player_name' => self::getActivePlayerName(),
-                'card_name' => $card['titleTr']
+                'card_name' => $card['title']
             ));
 
         } else if($type == "BARATTO") {
@@ -956,7 +956,7 @@ class FlorenzaCardGame extends Table {
 
             self::notifyAllPlayers("message", clienttranslate('${player_name} plays ${card_name}'), array(
                 'player_name' => self::getActivePlayerName(),
-                'card_name' => $card['titleTr']
+                'card_name' => $card['title']
             ));
             
             $this->gamestate->nextState('actionBaratto');
@@ -1239,7 +1239,10 @@ class FlorenzaCardGame extends Table {
 
         $currentPlayerId = self::getActivePlayerId();
 
-        $drawnCard = self::getUniqueValueFromDB( "SELECT card_id id, location FROM florenza_card WHERE location = 'deck' ORDER BY card_order LIMIT 0, 1");
+        $drawnCard = self::getObjectFromDB( "SELECT *, card_id id FROM florenza_card WHERE location = 'deck' ORDER BY card_order LIMIT 0, 1");
+        if(!$drawnCard) {
+            throw new BgaUserException(self::_("There are not card availability to play this action"));
+        }
         $cardId = $drawnCard['id'];
         self::DbQuery("UPDATE florenza_card SET location = 'hand', player_id = " . $currentPlayerId . " WHERE card_id = $cardId");
 
@@ -1331,7 +1334,7 @@ class FlorenzaCardGame extends Table {
         ));
 
         self::notifyPlayer($currentPlayerId, "message", clienttranslate('You kept ${card_name}'), array(
-            'card_name' => $card['titleTr'],
+            'card_name' => $card['title'],
         ));
         
         $this->gamestate->setPlayerNonMultiactive($currentPlayerId, 'captainSet');       
@@ -1905,6 +1908,10 @@ class FlorenzaCardGame extends Table {
         $captain = $this->loadPlayersBasicInfos();
         $captain = $captain[$nextCaptainId];
         self::DbQuery("UPDATE player SET player_score = player_score + 1 WHERE player_id = $nextCaptainId");
+        self::notifyAllPlayers('scorePointAcquired', "", array(
+            "player_id" => $nextCaptainId,
+            "score_point" => 1
+        ));
         self::notifyAllPlayers("message", clienttranslate('${captainname} gets 1 score point for being the captain'), array(
             "captainname" => $captain['player_name']
         )); 
