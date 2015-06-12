@@ -1241,7 +1241,7 @@ class FlorenzaCardGame extends Table {
 
         $drawnCard = self::getObjectFromDB( "SELECT *, card_id id FROM florenza_card WHERE location = 'deck' ORDER BY card_order LIMIT 0, 1");
         if(!$drawnCard) {
-            throw new BgaUserException(self::_("There are not card availability to play this action"));
+            throw new BgaUserException(self::_("There are no available cards to play this action"));
         }
         $cardId = $drawnCard['id'];
         self::DbQuery("UPDATE florenza_card SET location = 'hand', player_id = " . $currentPlayerId . " WHERE card_id = $cardId");
@@ -1504,7 +1504,15 @@ class FlorenzaCardGame extends Table {
     function stDiscard() {
         $currentRoundNumber = self::getGameStateValue("current_round_number", 1);
         if($currentRoundNumber == ROUND_TOTAL_NUMBER) $this->gamestate->nextState("incomeCollection");
-        else $this->gamestate->setAllPlayersMultiactive();
+        else {
+            $activePlayersId = array();
+            $players = $this->loadPlayersBasicInfos();
+            foreach($players as $playerId => $player) {
+                $count = $this->getPlayerHandCount($playerId);
+                if($count['florenza'] > 0) $activePlayersId[] = $playerId;
+            }
+            $this->gamestate->setPlayersMultiactive($activePlayersId, 'captainSet');
+        }
     }
 
     function stIncomeCollection() {

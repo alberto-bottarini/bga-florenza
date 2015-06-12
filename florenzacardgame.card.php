@@ -42,10 +42,11 @@ class FlorenzaCardHelper {
 				"SIGNOREDELORIONE" => $playersCount >= 3 ? 1 : 0,
 				"MASTROARTISTA" => $playersCount >= 4 ? 1 : 0,
 				"BOTTEGADARTE" => 1,
-				"PROTETTORE" => 1
+				"PROTETTORE" => 1,
+				"ARTEMAGGIORE" => 1
 			),
 			"2" => array(
-				"CASAMENTO" => 1,
+				"CASAMENTO" => $playersCount >= 3 ? 1 : 0,
 				"PALAGIO" => $playersCount >= 4 ? 2 : 1,
 				"TRITTICO" => $playersCount >= 4 ? 1 : 0,
 				"ABSIDE" => 1,
@@ -75,7 +76,7 @@ class FlorenzaCardHelper {
 				"FACCIATACHIESA" => 1,
 				"CAPPELLA" => 1,
 				"CUPOLA" => 1,
-				"CAMPANILE" => 1,
+				"CAMPANILE" => $playersCount >= 3 ? 1 : 0,
 				"SAGRESTIA" => 1,
 				"CONVENTO" => 1,
 				"BIBLIOTECA" => $playersCount >= 4 ? 1 : 0,
@@ -85,7 +86,7 @@ class FlorenzaCardHelper {
 				"LOGGIA" => 1,
 				"SALA" => 1,
 				"INGRESSO" => 1,
-				"STATUADIBRONZO" => $playersCount >= 3 ? 1 : 0,
+				"STATUADIBRONZO" => $playersCount >= 4 ? 1 : 0,
 				"FACCIATA" => 1,
 				"GRANDEQUADRO" => $playersCount >= 3 ? 1 : 0,
 				"CAMERANUZIALE" => 1,
