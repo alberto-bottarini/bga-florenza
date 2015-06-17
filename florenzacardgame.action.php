@@ -210,6 +210,12 @@
 		self::ajaxResponse();
 	}
 
+	public function cancelAction() {
+		self::setAjaxMode();
+		$result = $this->game->acCancelAction();
+		self::ajaxResponse();
+	}
+
 }
   
 

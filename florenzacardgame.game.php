@@ -1365,6 +1365,10 @@ class FlorenzaCardGame extends Table {
         
         $this->gamestate->nextState('incomeCollection');
     }
+
+    function acCancelAction() {
+        $this->gamestate->nextState('action');
+    }
     
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
@@ -1947,6 +1951,9 @@ class FlorenzaCardGame extends Table {
         
         if ($state['type'] == "activeplayer") {
             switch ($statename) {
+                case "action":
+                    $this->acSendWorkers();
+                    break;
                 default:
                     $this->gamestate->nextState( "zombiePass" );
                     break;

@@ -300,6 +300,15 @@ function (dojo, declare) {
                         this.addActionButton("go-market-sell-button", _("Sell a resource for 100 money"), "onGoMarketSell");
                         this.addActionButton("go-market-buy-button", _("Buy a resource for 100 money"), "onGoMarketBuy");
                         this.addActionButton("go-market-trade-button", _("Trade 2 resource for 1"), "onGoMarketTrade");
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
+                        break;
+
+                    case "actionReserveArtist":
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
+                        break;
+
+                    case "actionReserveMonument":
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
                         break;
 
                     case "actionMarketSell":
@@ -309,6 +318,7 @@ function (dojo, declare) {
                         this.addActionButton("go-market-sell-fabric-button", "<span class='resource-small resource-small-fabric'></span>", "onConfirmMarketSell");
                         this.addActionButton("go-market-sell-gold-button", "<span class='resource-small resource-small-gold'></span>", "onConfirmMarketSell");
                         this.addActionButton("go-market-sell-spice-button", "<span class='resource-small resource-small-spice'></span>", "onConfirmMarketSell");
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
                         break;
 
                      case "actionMarketBuy":
@@ -318,6 +328,7 @@ function (dojo, declare) {
                         this.addActionButton("go-market-buy-fabric-button", "<span class='resource-small resource-small-fabric'></span>", "onConfirmMarketBuy");
                         this.addActionButton("go-market-buy-gold-button", "<span class='resource-small resource-small-gold'></span>", "onConfirmMarketBuy");
                         this.addActionButton("go-market-buy-spice-button", "<span class='resource-small resource-small-spice'></span>", "onConfirmMarketBuy");
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
                         break;
 
                     case 'actionMarketTradeSell':
@@ -327,6 +338,7 @@ function (dojo, declare) {
                         this.addActionButton("go-market-trade-sell-fabric-button", "<span class='resource-small resource-small-fabric'></span>", "onConfirmMarketTradeSell");
                         this.addActionButton("go-market-trade-sell-gold-button", "<span class='resource-small resource-small-gold'></span>", "onConfirmMarketTradeSell");
                         this.addActionButton("go-market-trade-sell-spice-button", "<span class='resource-small resource-small-spice'></span>", "onConfirmMarketTradeSell");
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
                         break;
 
                     case 'actionMarketTradeSell2':
@@ -336,6 +348,7 @@ function (dojo, declare) {
                         this.addActionButton("go-market-trade-sell2-fabric-button", "<span class='resource-small resource-small-fabric'></span>", "onConfirmMarketTradeSell2");
                         this.addActionButton("go-market-trade-sell2-gold-button", "<span class='resource-small resource-small-gold'></span>", "onConfirmMarketTradeSell2");
                         this.addActionButton("go-market-trade-sell2-spice-button", "<span class='resource-small resource-small-spice'></span>", "onConfirmMarketTradeSell2");
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
                         break;
 
                     case 'actionMarketTradeBuy':
@@ -345,6 +358,7 @@ function (dojo, declare) {
                         this.addActionButton("go-market-trade-buy-fabric-button", "<span class='resource-small resource-small-fabric'></span>", "onConfirmMarketTradeBuy");
                         this.addActionButton("go-market-trade-buy-gold-button", "<span class='resource-small resource-small-gold'></span>", "onConfirmMarketTradeBuy");
                         this.addActionButton("go-market-trade-buy-spice-button", "<span class='resource-small resource-small-spice'></span>", "onConfirmMarketTradeBuy");
+                        this.addActionButton("cancel-button", _('Cancel action'), "onCancelAction");
                         break;
 
                     case "resourceChoice":
@@ -1012,6 +1026,14 @@ function (dojo, declare) {
             if(this.checkAction("confirmBaratto2")) {
                 this.ajaxcall('/florenzacardgame/florenzacardgame/confirmbaratto2.html', { lock: true,
                     inin: target.id.match(/baratto2-choice-([a-z]+)-button/)[1]
+                }, this, function() { });
+            }
+        },
+
+        onCancelAction: function(evt) {
+            dojo.stopEvent(evt);
+            if(this.checkAction("cancelAction")) {
+                this.ajaxcall('/florenzacardgame/florenzacardgame/cancelaction.html', { lock: true,
                 }, this, function() { });
             }
         },

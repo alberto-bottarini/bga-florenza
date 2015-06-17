@@ -109,8 +109,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must reserve an available artist'),
       "descriptionmyturn" => clienttranslate('${you} must reserve an available artist'),
       "type" => "activeplayer",
-      "possibleactions" => array( "confirmArtistReservation" ),
-      "transitions" => array( "actionEnd" => 30 )
+      "possibleactions" => array( "confirmArtistReservation", "cancelAction" ),
+      "transitions" => array( "actionEnd" => 30, "action" => 20)
     ),    
 
     25 => array(
@@ -118,8 +118,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must reserve an available monument'),
       "descriptionmyturn" => clienttranslate('${you} must reserve an available monument'),
       "type" => "activeplayer",
-      "possibleactions" => array( "confirmMonumentReservation" ),
-      "transitions" => array( "actionEnd" => 30 )
+      "possibleactions" => array( "confirmMonumentReservation", "cancelAction" ),
+      "transitions" => array( "actionEnd" => 30, "action" => 20)
     ),
 
     26 => array(
@@ -127,8 +127,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must take a market action'),
       "descriptionmyturn" => clienttranslate('${you} must take a market action'),
       "type" => "activeplayer",
-      "possibleactions" => array( "sellResourceMarket", "buyResourceMarket", "tradeResourceMarket" ),
-      "transitions" => array( "actionMarketSell" => 80, "actionMarketBuy" => 81, "actionMarketTradeSell" => 82 )
+      "possibleactions" => array( "sellResourceMarket", "buyResourceMarket", "tradeResourceMarket", "cancelAction" ),
+      "transitions" => array( "actionMarketSell" => 80, "actionMarketBuy" => 81, "actionMarketTradeSell" => 82, "action" => 20 )
     ),
 
     80 => array(
@@ -136,8 +136,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must choose which resource to sell to the market'),
       "descriptionmyturn" => clienttranslate('${you} must choose which resource to sell to the market'),
       "type" => "activeplayer",
-      "possibleactions" => array( "confirmActionMarketSell" ),
-      "transitions" => array( "actionEnd" => 30 )
+      "possibleactions" => array( "confirmActionMarketSell", "cancelAction" ),
+      "transitions" => array( "actionEnd" => 30, "action" => 20 )
     ),
 
     81 => array(
@@ -145,8 +145,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must choose which resource to buy from the market'),
       "descriptionmyturn" => clienttranslate('${you} must choose which resource to buy from the market'),
       "type" => "activeplayer",
-      "possibleactions" => array( "confirmActionMarketBuy" ),
-      "transitions" => array( "actionEnd" => 30 )
+      "possibleactions" => array( "confirmActionMarketBuy", "cancelAction" ),
+      "transitions" => array( "actionEnd" => 30, "action" => 20 )
     ),  
 
     82 => array(
@@ -154,8 +154,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must choose the first resource to sell to the market'),
       "descriptionmyturn" => clienttranslate('${you} must choose the first resource to sell to the market'),
       "type" => "activeplayer",
-      "possibleactions" => array( "confirmActionMarketTradeSell" ),
-      "transitions" => array( "actionMarketTradeSell2" => 83 )
+      "possibleactions" => array( "confirmActionMarketTradeSell", "cancelAction" ),
+      "transitions" => array( "actionMarketTradeSell2" => 83, "action" => 20 )
     ),
 
     83 => array(
@@ -163,8 +163,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must choose the second resource to sell to the market'),
       "descriptionmyturn" => clienttranslate('${you} must choose the second resource to sell to the market'),
       "type" => "activeplayer",
-      "possibleactions" => array( "confirmActionMarketTradeSell2" ),
-      "transitions" => array( "actionMarketTradeBuy" => 84 )
+      "possibleactions" => array( "confirmActionMarketTradeSell2", "cancelAction" ),
+      "transitions" => array( "actionMarketTradeBuy" => 84, "action" => 20 )
     ),    
 
     84 => array(
@@ -172,8 +172,8 @@ $machinestates = array(
       "description" => clienttranslate('${actplayer} must choose which resource to buy from the market'),
       "descriptionmyturn" => clienttranslate('${you} must choose which resource to buy from the market'),
       "type" => "activeplayer",
-      "possibleactions" => array( "confirmActionMarketTradeBuy" ),
-      "transitions" => array( "actionEnd" => 30 )
+      "possibleactions" => array( "confirmActionMarketTradeBuy", "cancelAction" ),
+      "transitions" => array( "actionEnd" => 30, "action" => 20 )
     ),
 
     28 => array(

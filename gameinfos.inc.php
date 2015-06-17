@@ -7,7 +7,7 @@ $gameinfos = array(
 'designer' => 'Stefano Groppi',       
 
 // Game artist (or game artists, separated by commas)
-'artist' => 'Stefano Groppi',         
+'artist' => 'Ivan Zoni, Daniele Zurla, Valeria Gobbi, Stefano Groppi', 
 
 // Year of FIRST publication of this game. Can be negative.
 'year' => 2013,                 
