@@ -124,7 +124,7 @@ $this->florenzaCards = array(
 		"titleTr" => self::_('Abside'),
 		"class" => "CHIESARIONE",
 		"cost" => array(
-			"marble" => 1,
+			"marble" => 2,
 			"spice" => 1,
 			"money" => 50
 		),
@@ -1353,7 +1353,7 @@ $this->monumentsCards = array(
 			"wood" => 2,
 			"metal" => 1,
 			"spice" => 1,
-			"fabric" => 1,
+			"fabric" => 2,
 			"money" => 100
 		),
 		"artists" => array("painter")
